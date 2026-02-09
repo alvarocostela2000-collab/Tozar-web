@@ -4,142 +4,454 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tózar (Granada) | Web del pueblo</title>
+  <meta name="description" content="Web no oficial de Tózar (Granada): periódico local, qué ver, qué hacer, galería y cómo llegar." />
 
   <style>
+    :root{
+      --bg:#155a32;
+      --bg2:#0e3f23;
+      --panel:#114a2a;
+      --panel2:#166534;
+      --text:#f0fff4;
+      --muted:#d1fae5;
+      --border:rgba(255,255,255,.14);
+      --shadow: 0 18px 55px rgba(0,0,0,.30);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family: Arial, Helvetica, sans-serif;
-      background:#1f6f3f; /* FONDO VERDE */
-      color:#f0fff4;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(900px 500px at 20% 0%, rgba(255,255,255,.12), transparent 55%),
+        radial-gradient(900px 500px at 90% 10%, rgba(0,0,0,.12), transparent 60%),
+        linear-gradient(180deg, var(--bg2), var(--bg));
+      color:var(--text);
       line-height:1.6;
     }
 
+    a{color:inherit}
+    .wrap{max-width:1080px;margin:0 auto;padding:18px 16px}
+
+    /* Header */
     header{
-      background:#14532d;
-      padding:20px;
-      text-align:center;
+      position:sticky; top:0; z-index:50;
+      background: rgba(17,74,42,.78);
+      backdrop-filter: blur(8px);
+      border-bottom:1px solid var(--border);
     }
-
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; flex-wrap:wrap;
+    }
+    .brand{
+      font-weight:900;
+      letter-spacing:.3px;
+      display:flex; align-items:center; gap:10px;
+    }
+    .brand .dot{
+      width:10px;height:10px;border-radius:99px;background:rgba(255,255,255,.7);
+      box-shadow:0 0 0 4px rgba(255,255,255,.12);
+    }
     nav a{
-      color:#d1fae5;
-      margin:0 12px;
       text-decoration:none;
-      font-weight:bold;
-    }
-
-    nav a:hover{
-      color:#ffffff;
-      text-decoration:underline;
-    }
-
-    section{
-      max-width:900px;
-      margin:30px auto;
-      padding:20px;
-      background:#14532d;
-      border-radius:12px;
-    }
-
-    h1,h2,h3{
-      color:#ffffff;
-    }
-
-    article{
-      background:#166534;
-      padding:15px;
+      padding:8px 10px;
       border-radius:10px;
-      margin-bottom:15px;
+      border:1px solid transparent;
+      color:var(--muted);
+      font-weight:700;
+      font-size:14px;
+      display:inline-block;
+    }
+    nav a:hover{border-color:var(--border); color:#fff}
+
+    /* Hero */
+    .hero{padding:24px 16px 10px}
+    .hero-grid{
+      max-width:1080px;margin:0 auto;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    .card{
+      background: rgba(17,74,42,.75);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:18px;
+      box-shadow: var(--shadow);
+    }
+    h1{margin:0 0 10px; font-size:42px; line-height:1.1}
+    h2{margin:0 0 10px; font-size:22px}
+    p{margin:0 0 10px; color:rgba(240,255,244,.88)}
+    .muted{color:rgba(209,250,229,.88)}
+    .pill-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    .pill{
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      color:rgba(209,250,229,.92);
+      font-size:14px;
+      background: rgba(255,255,255,.06);
+    }
+    .cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .btn{
+      text-decoration:none;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      font-weight:800;
+      display:inline-flex; align-items:center; gap:8px;
+    }
+    .btn.primary{
+      background: rgba(209,250,229,.14);
+      border-color: rgba(209,250,229,.30);
     }
 
+    figure{margin:0}
+    .hero-img{
+      border-radius:16px;
+      overflow:hidden;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      height:100%;
+      min-height:270px;
+    }
+    .hero-img img{width:100%;height:100%;object-fit:cover;display:block}
+    .cap{
+      margin-top:10px;
+      font-size:13px;
+      color:rgba(209,250,229,.85);
+    }
+
+    /* Sections */
+    main{padding:10px 16px 44px}
+    section{max-width:1080px;margin:0 auto 16px}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    .mini{
+      background: rgba(22,101,52,.65);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:14px;
+    }
+    .mini h3{margin:0 0 6px}
+    .mini p{margin:0; color:rgba(240,255,244,.86)}
+
+    /* Newspaper */
+    article{
+      background: rgba(22,101,52,.65);
+      border:1px solid var(--border);
+      padding:14px;
+      border-radius:14px;
+      margin-bottom:12px;
+    }
+    article h3{margin:0 0 6px}
+    article p{margin:0; color:rgba(240,255,244,.86)}
+
+    /* Gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:12px;
+    }
+    .photo{
+      border:1px solid var(--border);
+      border-radius:16px;
+      overflow:hidden;
+      background: rgba(255,255,255,.04);
+    }
+    .photo img{width:100%;height:180px;object-fit:cover;display:block}
+    .photo .pcap{padding:10px 12px; font-size:13px; color:rgba(209,250,229,.88)}
+
+    /* Map + contact */
+    .two{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    iframe{
+      width:100%;
+      height:320px;
+      border:0;
+      border-radius:16px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+    }
+    input, textarea{
+      width:100%;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      outline:none;
+      margin-top:6px;
+    }
+    button{
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background: rgba(209,250,229,.14);
+      color: var(--text);
+      cursor:pointer;
+      font-weight:800;
+    }
     footer{
-      text-align:center;
-      padding:15px;
-      color:#d1fae5;
-      font-size:14px;
+      border-top:1px solid var(--border);
+      background: rgba(17,74,42,.65);
+      color:rgba(209,250,229,.92);
+    }
+    .small{font-size:13px;color:rgba(209,250,229,.88)}
+
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      .gallery{grid-template-columns:1fr 1fr}
+      .two{grid-template-columns:1fr}
+      h1{font-size:34px}
+      .photo img{height:210px}
     }
   </style>
 </head>
 
 <body>
-
 <header>
-  <h1>Tózar (Granada)</h1>
-  <nav>
-    <a href="#inicio">Inicio</a>
-    <a href="#periodico">Periódico</a>
-    <a href="#historia">Historia</a>
-    <a href="#que-ver">Qué ver</a>
-  </nav>
+  <div class="wrap">
+    <div class="nav">
+      <div class="brand"><span class="dot"></span> Tózar · Granada</div>
+      <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#periodico">Periódico</a>
+        <a href="#que-hacer">Qué hacer</a>
+        <a href="#que-ver">Qué ver</a>
+        <a href="#galeria">Galería</a>
+        <a href="#como-llegar">Cómo llegar</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </div>
 </header>
 
-<section id="inicio">
-  <h2>Bienvenidos a Tózar</h2>
-  <p>
-    Web no oficial del pueblo de Tózar, hecha por y para la gente del pueblo.
-  </p>
-</section>
+<div class="hero" id="inicio">
+  <div class="hero-grid">
+    <div class="card">
+      <h1>Bienvenidos a Tózar</h1>
+      <p class="muted">
+        Web no oficial del pueblo, hecha por y para la gente del pueblo.
+        Aquí tienes el <strong>Periódico de Tózar</strong>, planes, lugares y fotos.
+      </p>
 
-<section id="periodico">
-  <h2>📰 Periódico de Tózar</h2>
+      <div class="pill-row">
+        <div class="pill">📍 Moclín (Granada)</div>
+        <div class="pill">📰 Noticias del pueblo</div>
+        <div class="pill">🌿 Naturaleza y paseos</div>
+      </div>
 
-  <article>
-    <h3>🔥 Un mancho volador casi deja sin luz al pueblo</h3>
-    <p>
-      La noche de la Candelaria estuvo a punto de terminar en apagón cuando un mancho
-      salió volando y cayó peligrosamente bajo un cable eléctrico del tejado de una vivienda.
-      La rápida actuación de un vecino, que subió con una escalera y lo apagó a tiempo,
-      evitó el que habría sido el apagón más comentado del año.
+      <div class="cta">
+        <a class="btn primary" href="#periodico">🗞️ Ver periódico</a>
+        <a class="btn" href="#galeria">📸 Ver fotos</a>
+        <a class="btn" href="#contacto">✉️ Contacto</a>
+      </div>
+
+      <p class="small" style="margin-top:12px;">
+        Consejo: si tienes fotos tuyas del pueblo, las cambiamos por estas y queda brutal.
+      </p>
+    </div>
+
+    <div class="card">
+      <figure class="hero-img">
+        <!-- Foto pública desde Wikimedia (puedes cambiarla por una tuya cuando quieras) -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/T%C3%B3zar%2C_en_Granada_%28Espa%C3%B1a%29.jpg/1280px-T%C3%B3zar%2C_en_Granada_%28Espa%C3%B1a%29.jpg"
+             alt="Panorámica de Tózar (Granada)">
+      </figure>
+      <div class="cap">Panorámica de Tózar (imagen de Wikimedia).</div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <section class="card" id="periodico">
+    <h2>📰 Periódico de Tózar</h2>
+    <p class="muted">Titulares frescos, sucesos, y “esto solo pasa aquí”.</p>
+
+    <article>
+      <h3>🔥 Un mancho volador casi deja sin luz al pueblo</h3>
+      <p>
+        La noche de la Candelaria estuvo a punto de terminar en apagón cuando un mancho salió volando y cayó
+        peligrosamente bajo un cable eléctrico del tejado de una vivienda. La rápida actuación de un vecino,
+        que subió con una escalera y lo apagó a tiempo, evitó el que habría sido el apagón más comentado del año.
+      </p>
+    </article>
+
+    <article>
+      <h3>🧭 Habilitan geocachings en Tózar</h3>
+      <p>
+        Nuevos puntos de geocaching han sido habilitados en distintos rincones de Tózar, atrayendo a visitantes con GPS.
+        Vecinos advierten que no todo tupper escondido es un tesoro… pero si está bien escondido, se respeta.
+      </p>
+    </article>
+
+    <article>
+      <h3>🐶 Fito, el perro más travieso del pueblo, empieza una nueva mafia</h3>
+      <p>
+        Fito, conocido por desaparecer bocadillos y dominar las sombras, ha comenzado a organizar una red de favores
+        a cambio de comida. “No es un perro, es un jefe”, afirma un vecino, mirando a ambos lados antes de hablar.
+      </p>
+    </article>
+
+    <article>
+      <h3>⛲ La fuente de la plaza del Árbol vuelve a echar agua</h3>
+      <p>
+        Tras más de diez años sin funcionar, la fuente de la plaza del Árbol vuelve a manar agua.
+        Provocó sorpresa, alegría y algún que otro selfie. Algunos ya hablan de milagro; otros, de “ya era hora”.
+      </p>
+    </article>
+  </section>
+
+  <section class="card" id="que-hacer">
+    <h2>✅ Qué hacer en Tózar (plan de 1 día)</h2>
+    <div class="grid">
+      <div class="mini">
+        <h3>☀️ Mañana</h3>
+        <p>Paseo tranquilo por el pueblo y fotos en los puntos con mejores vistas.</p>
+      </div>
+      <div class="mini">
+        <h3>🍽️ Mediodía</h3>
+        <p>Parada para comer y descanso. (Aquí puedes poner el bar/venta favorita del pueblo si quieres).</p>
+      </div>
+      <div class="mini">
+        <h3>🌙 Tarde</h3>
+        <p>Visita al entorno (mirador/lago) y vuelta para merienda o charla en la plaza.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" id="que-ver">
+    <h2>👀 Qué ver</h2>
+    <div class="grid">
+      <div class="mini">
+        <h3>🌄 Mirador</h3>
+        <p>Un sitio perfecto para vistas, fotos y ponerse filosófico un rato.</p>
+      </div>
+      <div class="mini">
+        <h3>🏞️ Lago</h3>
+        <p>Zona muy fotogénica para un paseo y descanso.</p>
+      </div>
+      <div class="mini">
+        <h3>🗼 Torre / entorno</h3>
+        <p>Un punto histórico del entorno que da mucha personalidad al sitio.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" id="galeria">
+    <h2>📸 Galería</h2>
+    <p class="muted">Unas cuantas fotos para que la web tenga vida.</p>
+
+    <div class="gallery">
+      <div class="photo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/T%C3%B3zar%2C_en_Granada_%28Espa%C3%B1a%29.jpg/960px-T%C3%B3zar%2C_en_Granada_%28Espa%C3%B1a%29.jpg" alt="Tózar panorámica">
+        <div class="pcap">Tózar (panorámica).</div>
+      </div>
+      <div class="photo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Lago_de_T%C3%B3zar.jpg" alt="Lago de Tózar">
+        <div class="pcap">Lago de Tózar.</div>
+      </div>
+      <div class="photo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Torre_atalaya_de_la_Porqueriza_o_de_T%C3%B3zar.jpg/960px-Torre_atalaya_de_la_Porqueriza_o_de_T%C3%B3zar.jpg" alt="Torre atalaya de la Porqueriza o de Tózar">
+        <div class="pcap">Torre atalaya (Porqueriza / Tózar).</div>
+      </div>
+      <div class="photo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/T%C3%B3zar%2C_en_Granada_%28Espa%C3%B1a%29.jpg/640px-T%C3%B3zar%2C_en_Granada_%28Espa%C3%B1a%29.jpg" alt="Vista de Tózar">
+        <div class="pcap">Vista del pueblo.</div>
+      </div>
+    </div>
+
+    <p class="small" style="margin-top:10px;">
+      Si me pasas 4–8 fotos tuyas, te dejo una galería “pro” (y quitamos los links externos).
     </p>
-  </article>
+  </section>
 
-  <article>
-    <h3>🧭 Habilitan geocachings en Tózar</h3>
-    <p>
-      Nuevos puntos de geocaching han sido habilitados en distintos rincones de Tózar,
-      atrayendo a visitantes con GPS y mochilas. Vecinos advierten que no todo tupper
-      escondido es un tesoro.
-    </p>
-  </article>
+  <section class="card" id="como-llegar">
+    <h2>🗺️ Cómo llegar</h2>
+    <div class="two">
+      <div class="mini">
+        <h3>🚗 En coche</h3>
+        <p>
+          Lo normal es venir desde Granada o alrededores por carretera hasta la zona de Moclín.
+          (Si me dices desde qué ciudad vienes más, te pongo rutas típicas).
+        </p>
+        <h3 style="margin-top:12px;">🧭 Consejos</h3>
+        <p>Si vienes por primera vez, trae batería en el móvil para fotos y mapa. Y cuidado con los manchos.</p>
+      </div>
 
-  <article>
-    <h3>🐶 Fito, el perro más travieso del pueblo, empieza una nueva mafia</h3>
-    <p>
-      Fito, conocido por desaparecer bocadillos y dominar las sombras,
-      ha comenzado a organizar una red de favores a cambio de comida.
-      “No es un perro, es un jefe”, afirma un vecino.
-    </p>
-  </article>
+      <div class="mini">
+        <h3>📍 Mapa</h3>
+        <!-- Mapa embebido: si quieres el exacto 100%, me dices y lo ajusto con el enlace de “Compartir” de Google Maps -->
+        <iframe
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=T%C3%B3zar%20Granada&output=embed">
+        </iframe>
+        <div class="small">Mapa: búsqueda “Tózar Granada”.</div>
+      </div>
+    </div>
+  </section>
 
-  <article>
-    <h3>⛲ La fuente de la plaza del Árbol vuelve a echar agua</h3>
-    <p>
-      Tras más de diez años sin funcionar, la fuente de la plaza del Árbol
-      ha vuelto a manar agua, provocando sorpresa, alegría y algún que otro selfie.
-      Algunos vecinos ya hablan de milagro.
-    </p>
-  </article>
-</section>
+  <section class="card" id="contacto">
+    <h2>✉️ Contacto</h2>
+    <p class="muted">¿Tienes un titular, una foto o una queja formal por el asunto del mancho? Déjalo aquí.</p>
 
-<section id="historia">
-  <h2>Historia</h2>
-  <p>
-    Tózar es una pedanía del municipio de Moclín, con orígenes que se remontan
-    a época árabe y restos históricos de distintas civilizaciones.
-  </p>
-</section>
+    <div class="two">
+      <div class="mini">
+        <form onsubmit="return false;">
+          <label>Nombre
+            <input type="text" placeholder="Tu nombre" />
+          </label>
+          <br><br>
+          <label>Titular o mensaje
+            <textarea rows="5" placeholder="Escribe tu mensaje..."></textarea>
+          </label>
+          <br><br>
+          <button type="submit">Enviar (aún no envía)</button>
+          <p class="small" style="margin-top:10px;">
+            Para que envíe de verdad habría que usar un servicio de formularios o un backend.
+          </p>
+        </form>
+      </div>
 
-<section id="que-ver">
-  <h2>Qué ver</h2>
-  <ul>
-    <li>Mirador de Tózar</li>
-    <li>Lago artificial</li>
-    <li>Torre de las Porquerizas</li>
-  </ul>
-</section>
+      <div class="mini">
+        <h3>📢 Envíanos noticias</h3>
+        <p>
+          Puedes llevar el “Periódico de Tózar” a otro nivel: poner fechas, “edición semanal”,
+          e incluso un archivo de noticias antiguas.
+        </p>
+        <p class="small">
+          Si quieres, te preparo un sistema para añadir noticias copiando/pegando solo 3 líneas.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
 
 <footer>
-  © 2026 · Web y Periódico de Tózar
+  <div class="wrap">
+    © <span id="year"></span> · Web y Periódico de Tózar · Hecha en HTML
+    <div class="small" style="margin-top:6px;">
+      Imágenes actuales cargadas desde Wikimedia (puedes sustituirlas por fotos propias cuando quieras).
+    </div>
+  </div>
 </footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
