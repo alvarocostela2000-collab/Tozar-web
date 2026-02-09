@@ -154,6 +154,24 @@
     article h3{margin:0 0 6px}
     article p{margin:0; color:rgba(240,255,244,.86)}
 
+    /* ✅ FOTO AL LADO EN LA NOTICIA DE FITO */
+    .noticia-fito{
+      display:flex;
+      gap:15px;
+      align-items:flex-start;
+      margin-top:10px;
+    }
+    .noticia-fito img{
+      width:180px;
+      border-radius:12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+      flex: 0 0 auto;
+    }
+    @media (max-width:700px){
+      .noticia-fito{flex-direction:column;}
+      .noticia-fito img{width:100%;}
+    }
+
     /* Gallery */
     .gallery{
       display:grid;
@@ -266,11 +284,9 @@
 
     <div class="card">
       <figure class="hero-img">
-        <!-- Foto pública desde Wikimedia (puedes cambiarla por una tuya cuando quieras) -->
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/T%C3%B3zar%2C_en_Granada_%28Espa%C3%B1a%29.jpg/1280px-T%C3%B3zar%2C_en_Granada_%28Espa%C3%B1a%29.jpg"
-             alt="Panorámica de Tózar (Granada)">
+        <img src="atardecertozar.jpeg" alt="Atardecer en Tózar">
       </figure>
-      <div class="cap">Panorámica de Tózar (imagen de Wikimedia).</div>
+      <div class="cap">Atardecer en Tózar.</div>
     </div>
   </div>
 </div>
@@ -297,12 +313,18 @@
       </p>
     </article>
 
+    <!-- ✅ NOTICIA DE FITO CON FOTO AL LADO -->
     <article>
       <h3>🐶 Fito, el perro más travieso del pueblo, empieza una nueva mafia</h3>
-      <p>
-        Fito, conocido por desaparecer bocadillos y dominar las sombras, ha comenzado a organizar una red de favores
-        a cambio de comida. “No es un perro, es un jefe”, afirma un vecino, mirando a ambos lados antes de hablar.
-      </p>
+
+      <div class="noticia-fito">
+        <img src="fitomafioso.jpeg" alt="Fito, el perro más travieso de Tózar">
+
+        <p>
+          Fito, conocido por desaparecer bocadillos y dominar las sombras, ha comenzado a organizar una red de favores
+          a cambio de comida. “No es un perro, es un jefe”, afirma un vecino, mirando a ambos lados antes de hablar.
+        </p>
+      </div>
     </article>
 
     <article>
@@ -393,7 +415,6 @@
 
       <div class="mini">
         <h3>📍 Mapa</h3>
-        <!-- Mapa embebido: si quieres el exacto 100%, me dices y lo ajusto con el enlace de “Compartir” de Google Maps -->
         <iframe
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
